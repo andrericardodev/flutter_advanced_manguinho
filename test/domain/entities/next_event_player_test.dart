@@ -11,11 +11,17 @@ void main() {
 
   test('should return the first letters of the first names', () {
     expect(initialsOf('Xavier'), 'XA');
+    expect(initialsOf('A'), 'A');
   });
 
   test('should convert to uppercase', () {
     expect(initialsOf('alexandre ribeiro'), 'AR');
     expect(initialsOf('Xavier'), 'XA');
+    expect(initialsOf('b'), 'B');
+  });
+
+  test('should return "-" when name is empty', () {
+    expect(initialsOf(''), '-');
   });
 }
 
@@ -58,8 +64,9 @@ class NextEventPlayer {
 
   static String _getInitials(String name) {
     final names = name.toUpperCase().split(' ');
-    String firstChar = names.first[0];
-    String lastChar = names.last[names.length == 1 ? 1 : 0];
+    String firstChar = names.first.split('').firstOrNull ?? '-';
+    String lastChar =
+        names.last.split('').elementAtOrNull(names.length == 1 ? 1 : 0) ?? '';
     return '$firstChar$lastChar';
   }
 }
