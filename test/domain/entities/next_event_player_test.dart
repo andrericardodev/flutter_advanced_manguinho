@@ -7,11 +7,15 @@ void main() {
     expect(initialsOf('Alexandre Ribeiro'), 'AR');
     expect(initialsOf('José Alves'), 'JA');
     expect(initialsOf('João Romário Silva'), 'JS');
-    expect(initialsOf('Xavier'), 'XA');
   });
 
   test('should return the first letters of the first names', () {
-    expect(initialsOf('Xavier'), 'Xa');
+    expect(initialsOf('Xavier'), 'XA');
+  });
+
+  test('should convert to uppercase', () {
+    expect(initialsOf('alexandre ribeiro'), 'AR');
+    expect(initialsOf('Xavier'), 'XA');
   });
 }
 
@@ -53,7 +57,7 @@ class NextEventPlayer {
       );
 
   static String _getInitials(String name) {
-    final names = name.split(' ');
+    final names = name.toUpperCase().split(' ');
     String firstChar = names.first[0];
     String lastChar = names.last[names.length == 1 ? 1 : 0];
     return '$firstChar$lastChar';
