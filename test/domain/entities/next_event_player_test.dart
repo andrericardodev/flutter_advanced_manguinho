@@ -15,6 +15,13 @@ void main() {
       isConfirmed: true,
     );
     expect(player2.getInitials(), 'JA');
+
+    final player3 = NextEventPlayer(
+      id: '',
+      name: 'Jose Ricardo da Silva',
+      isConfirmed: true,
+    );
+    expect(player3.getInitials(), 'JS');
   });
 }
 
@@ -37,6 +44,8 @@ class NextEventPlayer {
 
   String getInitials() {
     final names = name.split(' ');
-    return '${names[0][0]}${names[1][0]}';
+    String firstChar = names.first[0];
+    String lastChar = names.last[0];
+    return '$firstChar$lastChar';
   }
 }
