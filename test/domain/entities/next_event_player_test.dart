@@ -1,27 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  NextEventPlayer makeSut(String name) =>
+      NextEventPlayer(id: '', name: name, isConfirmed: true);
   test('should return the first letter of the first and last names', () {
-    final player = NextEventPlayer(
-      id: '',
-      name: 'Andre Ricardo',
-      isConfirmed: true,
-    );
-    expect(player.getInitials(), 'AR');
-
-    final player2 = NextEventPlayer(
-      id: '',
-      name: 'José Arantes',
-      isConfirmed: true,
-    );
-    expect(player2.getInitials(), 'JA');
-
-    final player3 = NextEventPlayer(
-      id: '',
-      name: 'Jose Ricardo da Silva',
-      isConfirmed: true,
-    );
-    expect(player3.getInitials(), 'JS');
+    expect(makeSut('Alexandre Ribeiro').getInitials(), 'AR');
+    expect(makeSut('José Alves').getInitials(), 'JA');
+    expect(makeSut('João Romário Silva').getInitials(), 'JS');
   });
 }
 
