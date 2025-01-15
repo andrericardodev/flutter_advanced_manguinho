@@ -23,6 +23,22 @@ void main() {
   test('should return "-" when name is empty', () {
     expect(initialsOf(''), '-');
   });
+
+  test('should ignore extra whitespace', () {
+    expect(initialsOf('Alexandre Ribeiro '), 'AR');
+    expect(initialsOf(' Alexandre Ribeiro'), 'AR');
+    expect(initialsOf(' Alexandre Ribeiro '), 'AR');
+    expect(initialsOf('Alexandre  Ribeiro'), 'AR');
+    expect(initialsOf('  Alexandre  Ribeiro  '), 'AR');
+    expect(initialsOf(' Xavier'), 'XA');
+    expect(initialsOf('Xavier '), 'XA');
+    expect(initialsOf(' Xavier '), 'XA');
+    expect(initialsOf(' A'), 'A');
+    expect(initialsOf('A '), 'A');
+    expect(initialsOf(' A '), 'A');
+    expect(initialsOf(' '), '-');
+    expect(initialsOf('  '), '-');
+  });
 }
 
 class NextEventPlayer {
@@ -63,7 +79,7 @@ class NextEventPlayer {
       );
 
   static String _getInitials(String name) {
-    final names = name.toUpperCase().split(' ');
+    final names = name.toUpperCase().trim().split(' ');
     String firstChar = names.first.split('').firstOrNull ?? '-';
     String lastChar =
         names.last.split('').elementAtOrNull(names.length == 1 ? 1 : 0) ?? '';
